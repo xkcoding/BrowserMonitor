@@ -1,0 +1,21 @@
+IStoreGather.Endpoints=tcp -p 17001
+IceBox.UseSharedCommunicator.IStoreGather=1
+IceBox.Service.IStoreGather=ncm.service.Starter
+WorkPath=D:\workspace\idea\BrowserMonitor
+Ice.ThreadPool.Server.Size=50
+Ice.ThreadPool.Server.SizeMax=100
+Ice.ThreadPool.Server.StackSize=262144
+Ice.MessageSizeMax=102400
+Ice.Override.Timeout=10000
+Ice.Override.ConnectTimeout=3000
+Ice.RetryIntervals=-1
+IceBox.InheritProperties=1
+GearmanQueue=60000
+GearmanServers=114.215.221.100:4730
+sql.Driver=com.mysql.jdbc.Driver
+sql.Url=jdbc:mysql://10.13.85.168:3306/market?useUnicode=true&characterEncoding=UTF-8
+sql.User=developer
+sql.Password=123456
+store.name=XIAOMI;BAIDU;QIHU;VIVO;LENOVO;MEIZU;JINLI;KUPAI;HUAWEI
+ff.path=C:/Program Files (x86)/Mozilla Firefox/firefox.exe
+driver.path=geckodriver.exe

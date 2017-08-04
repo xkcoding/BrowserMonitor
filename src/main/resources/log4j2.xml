@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{dd HH:mm:ss} [%t] %-5level %c{1.}:%L - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${sys:logPath}/ncm.log"
+                     filePattern="${sys:logPath}/ncm_%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{dd HH:mm:ss} [%-5p] [%.15t] %c{1.} : %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="RollingFileError" fileName="${sys:logPath}/ncm.error"
+                     filePattern="${sys:logPath}/ncm_%d{MM-dd-yyyy}.error">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout>
+                <Pattern>%d{dd HH:mm:ss} [%-5p] [%.15t] %c{1.} : %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="RollingFileError"/>
+        </Root>
+    </Loggers>
+</Configuration>
