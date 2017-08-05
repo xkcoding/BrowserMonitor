@@ -18,26 +18,27 @@ public class NCMCommentModel implements Serializable {
     @GeneratedValue
     private Long id;
 
+    private String name;
+
     private Long songId;
 
     private String comment;
 
-    private Integer floor;//start with 1
-
     private Date date;
 
     private Integer praise;
+
+    private String ori;
+
+    private Long oriUserId;
+
+    private String oriUserName;
 
     private String reply;
 
     private Long replyUserId;
 
     private String replyUserName;
-
-    private Date replyDate;
-
-    private Integer replypraise;
-
 
     @Column(insertable = false, updatable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
@@ -47,20 +48,20 @@ public class NCMCommentModel implements Serializable {
             columnDefinition = "CURRENT_TIMESTAMP")
     private Timestamp createtime;
 
-    public Timestamp getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Timestamp updatetime) {
-        this.updatetime = updatetime;
-    }
-
     public Timestamp getCreatetime() {
         return createtime;
     }
 
     public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
+    }
+
+    public Timestamp getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Timestamp updatetime) {
+        this.updatetime = updatetime;
     }
 
     public Long getId() {
@@ -87,12 +88,12 @@ public class NCMCommentModel implements Serializable {
         this.comment = comment;
     }
 
-    public Integer getFloor() {
-        return floor;
+    public String getName() {
+        return name;
     }
 
-    public void setFloor(Integer floor) {
-        this.floor = floor;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDate() {
@@ -135,19 +136,46 @@ public class NCMCommentModel implements Serializable {
         this.replyUserName = replyUserName;
     }
 
-    public Date getReplyDate() {
-        return replyDate;
+    public String getOri() {
+        return ori;
     }
 
-    public void setReplyDate(Date replyDate) {
-        this.replyDate = replyDate;
+    public void setOri(String ori) {
+        this.ori = ori;
     }
 
-    public Integer getReplypraise() {
-        return replypraise;
+    public Long getOriUserId() {
+        return oriUserId;
     }
 
-    public void setReplypraise(Integer replypraise) {
-        this.replypraise = replypraise;
+    public void setOriUserId(Long oriUserId) {
+        this.oriUserId = oriUserId;
+    }
+
+    public String getOriUserName() {
+        return oriUserName;
+    }
+
+    public void setOriUserName(String oriUserName) {
+        this.oriUserName = oriUserName;
+    }
+
+    @Override
+    public String toString() {
+        return "NCMCommentModel{" +
+                "name='" + name + '\'' +
+                ", songId=" + songId +
+                ", comment='" + comment + '\'' +
+                ", date=" + date +
+                ", praise=" + praise +
+                ", ori='" + ori + '\'' +
+                ", oriUserId=" + oriUserId +
+                ", oriUserName='" + oriUserName + '\'' +
+                ", reply='" + reply + '\'' +
+                ", replyUserId=" + replyUserId +
+                ", replyUserName='" + replyUserName + '\'' +
+                ", updatetime=" + updatetime +
+                ", createtime=" + createtime +
+                '}';
     }
 }

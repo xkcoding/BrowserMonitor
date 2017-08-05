@@ -1,12 +1,14 @@
 package ncm.task;
 
-import ncm.service.NCMAllService;
-import ncm.service.NCMWeekService;
+import ncm.monitor.NCMAllMonitor;
+import ncm.monitor.NCMWeekMonitor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,13 +18,16 @@ import java.util.concurrent.Executors;
 @Configuration
 @EnableScheduling
 public class NCMTask {
-    private NCMWeekService ncmWeekService;
-    private NCMAllService ncmAllService;
+    private NCMWeekMonitor ncmWeekMonitor;
+    private NCMAllMonitor ncmAllMonitor;
+
+    @Value(value = "${schedule.rate}")
+    private int period;
 
     @Autowired
-    public NCMTask(NCMWeekService ncmWeekService, NCMAllService ncmAllService) {
-        this.ncmWeekService = ncmWeekService;
-        this.ncmAllService = ncmAllService;
+    public NCMTask(NCMWeekMonitor ncmWeekMonitor, NCMAllMonitor ncmAllMonitor) {
+        this.ncmWeekMonitor = ncmWeekMonitor;
+        this.ncmAllMonitor = ncmAllMonitor;
     }
 
     @Scheduled(cron = "${schedule.cronTab}")
@@ -31,13 +36,13 @@ public class NCMTask {
         fixedThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                ncmWeekService.task();
+                ncmWeekMonitor.task(new Date(new Date().getTime() / period * period));
             }
         });
         fixedThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                ncmAllService.task();
+                ncmAllMonitor.task(new Date(new Date().getTime() / period * period));
             }
         });
     }

@@ -27,11 +27,33 @@ public class NCMWeekModel implements Serializable {
 
     private Integer rank;//start with 1;
 
-    private Double width;
-
-    private Integer listen;
+    private Integer times;
 
     private Date date;
+
+    private Integer incre;
+
+    private Double width;
+
+    public Double getWidth() {
+        return width;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public void settimes(Integer times) {
+        this.times = times;
+    }
+
+    public Integer getIncre() {
+        return incre;
+    }
+
+    public void setIncre(Integer incre) {
+        this.incre = incre;
+    }
 
     @Column(insertable = false, updatable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
@@ -41,30 +63,6 @@ public class NCMWeekModel implements Serializable {
             columnDefinition = "CURRENT_TIMESTAMP")
     private Timestamp createtime;
 
-    @OneToOne
-    @JoinColumn(name = "songId", unique = true, insertable = false, nullable = false, updatable = false)
-    private NCMSongModel ncmSongModel;
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-    public void setlisten(Integer listen) {
-        this.listen = listen;
-    }
-
-    public Timestamp getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Timestamp updatetime) {
-        this.updatetime = updatetime;
-    }
-
     public Timestamp getCreatetime() {
         return createtime;
     }
@@ -73,12 +71,20 @@ public class NCMWeekModel implements Serializable {
         this.createtime = createtime;
     }
 
-    public NCMSongModel getNcmSongModel() {
-        return ncmSongModel;
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
-    public void setNcmSongModel(NCMSongModel ncmSongModel) {
-        this.ncmSongModel = ncmSongModel;
+    public void setTimes(Integer times) {
+        this.times = times;
+    }
+
+    public Timestamp getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Timestamp updatetime) {
+        this.updatetime = updatetime;
     }
 
     public Date getDate() {
@@ -137,34 +143,28 @@ public class NCMWeekModel implements Serializable {
         this.rank = rank;
     }
 
-    public double getWidth() {
-        return width;
+    public int getTimes() {
+        return times;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public int getListen() {
-        return listen;
-    }
-
-    public void setListen(int listen) {
-        this.listen = listen;
+    public void setTimes(int times) {
+        this.times = times;
     }
 
     @Override
     public String toString() {
         return "NCMWeekModel{" +
-                "id=" + id +
-                ", song='" + song + '\'' +
+                "song='" + song + '\'' +
                 ", songId=" + songId +
                 ", singer='" + singer + '\'' +
                 ", singerId=" + singerId +
                 ", rank=" + rank +
-                ", width=" + width +
-                ", listen=" + listen +
+                ", times=" + times +
                 ", date=" + date +
+                ", incre=" + incre +
+                ", width=" + width +
+                ", updatetime=" + updatetime +
+                ", createtime=" + createtime +
                 '}';
     }
 }

@@ -25,43 +25,29 @@ public class NCMAllModel {
 
     private Integer rank;//start with 1;
 
-    private Double width;
-
-    private Integer listen;
+    private Integer times;
 
     private Date date;
 
-    @Column(insertable = false, updatable = false,
-            columnDefinition = "DEFAULT CURRENT_TIMESTAMP AFTER")
-    private Timestamp createtime;
+    private Integer incre;
 
-    @Column(insertable = false, updatable = false,
-            columnDefinition = "TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Timestamp updatetime;
+    private Double width;
 
-    @OneToOne
-    @JoinColumn(name = "songId", unique = true, insertable = false, nullable = false, updatable = false)
-    private NCMSongModel ncmSongModel;
+    public void setTimes(Integer times) {
+        this.times = times;
+    }
 
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    public Double getWidth() {
+        return width;
     }
 
     public void setWidth(Double width) {
         this.width = width;
     }
 
-    public void setListen(Integer listen) {
-        this.listen = listen;
-    }
-
-    public Timestamp getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Timestamp updatetime) {
-        this.updatetime = updatetime;
-    }
+    @Column(insertable = false, updatable = false,
+            columnDefinition = "DEFAULT CURRENT_TIMESTAMP AFTER")
+    private Timestamp createtime;
 
     public Timestamp getCreatetime() {
         return createtime;
@@ -71,12 +57,24 @@ public class NCMAllModel {
         this.createtime = createtime;
     }
 
-    public NCMSongModel getNcmSongModel() {
-        return ncmSongModel;
+    @Column(insertable = false, updatable = false,
+            columnDefinition = "TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private Timestamp updatetime;
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
-    public void setNcmSongModel(NCMSongModel ncmSongModel) {
-        this.ncmSongModel = ncmSongModel;
+    public void settimes(Integer times) {
+        this.times = times;
+    }
+
+    public Timestamp getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Timestamp updatetime) {
+        this.updatetime = updatetime;
     }
 
     public Date getDate() {
@@ -135,34 +133,36 @@ public class NCMAllModel {
         this.rank = rank;
     }
 
-    public double getWidth() {
-        return width;
+    public int getTimes() {
+        return times;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
+    public void setTimes(int times) {
+        this.times = times;
     }
 
-    public int getListen() {
-        return listen;
+    public Integer getIncre() {
+        return incre;
     }
 
-    public void setlisten(int listen) {
-        this.listen = listen;
+    public void setIncre(Integer incre) {
+        this.incre = incre;
     }
 
     @Override
     public String toString() {
         return "NCMAllModel{" +
-                "id=" + id +
-                ", song='" + song + '\'' +
+                "song='" + song + '\'' +
                 ", songId=" + songId +
                 ", singer='" + singer + '\'' +
                 ", singerId=" + singerId +
                 ", rank=" + rank +
-                ", width=" + width +
-                ", listen=" + listen +
+                ", times=" + times +
                 ", date=" + date +
+                ", incre=" + incre +
+                ", width=" + width +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
                 '}';
     }
 }
